@@ -22,22 +22,18 @@ while True:
         if event.type == pg.QUIT:
             exit()
         if event.type == pg.KEYDOWN:
-            if event.key == pg.K_w:
-                lead_x_change = -10
-                lead_y_change = 0
-            elif event.key == pg.K_s:
-                lead_x_change = 10
-                lead_y_change = 0
-            elif event.key == pg.K_a:
-                lead_x_change = -10
-                lead_y_change = 0
-            elif event.key == pg.K_d:
-                lead_x_change = 10
-                lead_y_change = 0
-
-        lead_x += lead_x_change
-        lead_y += lead_y_change
-        
+            if event.key == pg.K_w and dirs[pg.K_w]:
+                snake_dir = (0, -TILE_SIZE)
+                dirs = {pg.K_w: 1, pg.K_s: 0, pg.K_a: 1, pg.K_d: 1}
+            if event.key == pg.K_s and dirs[pg.K_s]:
+                snake_dir = (0, TILE_SIZE)
+                dirs = {pg.K_w: 0, pg.K_s: 1, pg.K_a: 1, pg.K_d: 1}
+            if event.key == pg.K_a and dirs[pg.K_a]:
+                snake_dir = (-TILE_SIZE, 0)
+                dirs = {pg.K_w: 1, pg.K_s: 1, pg.K_a: 1, pg.K_d: 0}
+            if event.key == pg.K_d and dirs[pg.K_d]:
+                snake_dir = (TILE_SIZE, 0)
+                dirs = {pg.K_w: 1, pg.K_s: 1, pg.K_a: 0, pg.K_d: 1}
         screen.fill('black')
         # check borders and selfeating
         self_eating = pg.Rect.collidelist(snake, segments[:-1]) != -1
@@ -75,8 +71,6 @@ while True:
 
 
         
-
-
 
 
 
