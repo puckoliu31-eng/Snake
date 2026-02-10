@@ -22,18 +22,22 @@ while True:
         if event.type == pg.QUIT:
             exit()
         if event.type == pg.KEYDOWN:
-            if event.key == pg.K_UP:
+            if event.key == pg.K_w:
                 lead_x_change = -10
                 lead_y_change = 0
-            elif event.key == pg.K_DOWN:
+            elif event.key == pg.K_s:
                 lead_x_change = 10
                 lead_y_change = 0
-            elif event.key == pg.K_LEFT:
+            elif event.key == pg.K_a:
                 lead_x_change = -10
                 lead_y_change = 0
-            elif event.key == pg.K_RIGHT:
+            elif event.key == pg.K_d:
                 lead_x_change = 10
                 lead_y_change = 0
+
+        lead_x += lead_x_change
+        lead_y += lead_y_change
+        
         screen.fill('black')
         # check borders and selfeating
         self_eating = pg.Rect.collidelist(snake, segments[:-1]) != -1
@@ -71,6 +75,7 @@ while True:
 
 
         
+
 
 
 
